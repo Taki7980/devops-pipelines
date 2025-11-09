@@ -1,0 +1,24 @@
+name: ci/cd pipelines
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout code
+      user: actions/checkout@v5
+
+    - name: Set up Node.js
+      user: actions/setup-node@v3
+      with:
+          node-version: 16
+
+    - name: Install dependencies
+      run: pnpm install
+
+    - name: Run tests
+      run: pnpm test
